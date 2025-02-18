@@ -9,7 +9,6 @@ import (
 	"sso/internal/domain/models"
 	"sso/internal/lib/logger/jwt"
 	"sso/internal/lib/logger/sl"
-	"sso/internal/storage"
 	"time"
 )
 
@@ -42,6 +41,7 @@ var (
 	ErrInvalidCredentials = errors.New("invalid credentials")
 	ErrInvalidAppID       = errors.New("invalid app id")
 	ErrUserExists         = errors.New("user already exists")
+	ErrUserNotFound       = errors.New("user not found")
 )
 
 // New returns a new instance of the Auth service
@@ -81,7 +81,7 @@ func (a *Auth) Login(
 
 	user, err := a.userProvider.User(ctx, email)
 	if err != nil {
-		if errors.Is(err, storage.ErrUserNotFound) {
+		if errors.Is(err, ErrUserNotFound) {
 			a.log.Warn("user not found", sl.Err(err))
 
 			return "", fmt.Errorf("%s: %w", op, ErrInvalidCredentials)
@@ -153,7 +153,7 @@ func (a *Auth) IsAdmin(ctx context.Context, userID int64) (bool, error) {
 	log.Info("checking if user is admin")
 	isAdmin, err := a.userProvider.IsAdmin(ctx, userID)
 	if err != nil {
-		if errors.Is(err, storage.ErrUserExists) {
+		if errors.Is(err, ErrUserExists) {
 			log.Warn("user already exists", sl.Err(err))
 			return false, fmt.Errorf("%s: %w", op, ErrUserExists)
 		}
