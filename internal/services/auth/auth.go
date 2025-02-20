@@ -4,11 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/GoncharovFyodor/sso/internal/domain/models"
+	"github.com/GoncharovFyodor/sso/internal/lib/logger/jwt"
+	"github.com/GoncharovFyodor/sso/internal/lib/logger/sl"
 	"golang.org/x/crypto/bcrypt"
 	"log/slog"
-	"sso/internal/domain/models"
-	"sso/internal/lib/logger/jwt"
-	"sso/internal/lib/logger/sl"
 	"time"
 )
 

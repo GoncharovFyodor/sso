@@ -3,12 +3,12 @@ package auth
 import (
 	"context"
 	"errors"
+	"github.com/GoncharovFyodor/sso/internal/services/auth"
+	"github.com/GoncharovFyodor/sso/internal/storage"
 	ssov1 "github.com/GoncharovFyodor/sso_protos/gen/go/sso"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"sso/internal/services/auth"
-	"sso/internal/storage"
 )
 
 type Auth interface {

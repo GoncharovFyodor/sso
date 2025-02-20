@@ -1,4 +1,4 @@
-module sso
+module github.com/GoncharovFyodor/sso
 
 go 1.23.1
 

@@ -2,11 +2,11 @@ package suite
 
 import (
 	"context"
+	"github.com/GoncharovFyodor/sso/internal/config"
 	ssov1 "github.com/GoncharovFyodor/sso_protos/gen/go/sso"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"net"
-	"sso/internal/config"
 	"strconv"
 	"testing"
 )
